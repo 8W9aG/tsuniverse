@@ -1,0 +1,64 @@
+[
+    [
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "ECBDFR",
+            "lag": 1.0,
+            "correlation": 0.9997766740124677
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "IUDSOIA",
+            "lag": 1.0,
+            "correlation": 0.9871583987968227
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "SOFR90DAYAVG",
+            "lag": 6.0,
+            "correlation": 0.973818485377085
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "SOFR30DAYAVG",
+            "lag": 1.0,
+            "correlation": 0.9696640419759409
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "SOFR",
+            "lag": 1.0,
+            "correlation": 0.9657757584660273
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "EFFR",
+            "lag": 1.0,
+            "correlation": 0.9655809794376762
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "DFEDTARU",
+            "lag": 1.0,
+            "correlation": 0.9653034267720356
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "AMERIBOR",
+            "lag": 1.0,
+            "correlation": 0.962331493913662
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "DTP10J28",
+            "lag": 1.0,
+            "correlation": 0.9050998929254201
+        },
+        {
+            "predictor": "ECBESTRVOLWGTTRMDMNRT",
+            "predictand": "ECIWAG",
+            "lag": 1.0,
+            "correlation": 0.8989213343907534
+        }
+    ]
+]
