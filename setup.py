@@ -23,7 +23,7 @@ def install_requires() -> typing.List[str]:
 
 setup(
     name='tsuniverse',
-    version='0.0.1',
+    version='0.0.2',
     description='A library for efficiently processing a time series universe to determine causal features.',
     long_description=long_description,
     long_description_content_type='text/markdown',

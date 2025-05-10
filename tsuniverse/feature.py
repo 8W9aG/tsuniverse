@@ -7,6 +7,8 @@ class Feature(TypedDict):
     """A description of a feature to use."""
 
     predictor: str
+    predictor_transform: str
     predictand: str
-    lag: NotRequired[int]
+    predictand_transform: str
+    lag: NotRequired[float]
     correlation: NotRequired[float]

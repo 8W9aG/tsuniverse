@@ -16,10 +16,8 @@ class TestProcess(unittest.TestCase):
     def test_process(self):
         df = pd.read_parquet(os.path.join(self.dir, "universe.parquet"))
         features = list(process(df, [df.columns.values.tolist()[0]], 30))
-        """
-        with open(os.path.join(self.dir, "expected.json"), "w") as handle:
-            json.dump(features, handle)
-        """
+        #with open(os.path.join(self.dir, "expected.json"), "w") as handle:
+        #    json.dump(features, handle)
         with open(os.path.join(self.dir, "expected.json")) as handle:
             expected_features = json.load(handle)
             self.assertListEqual(features, expected_features)
