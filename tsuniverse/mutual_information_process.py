@@ -1,54 +1,68 @@
-"""The pearson process function."""
+"""The mutual information process function."""
 
+# pylint: disable=duplicate-code,too-many-locals
 from typing import Any, Iterator
 
 import numpy as np
 import pandas as pd
+from sklearn.feature_selection import mutual_info_regression  # type: ignore
 
 from .feature import Feature
 from .transform import Transform
 from .transforms import TRANSFORMS
 
-_PEARSON_CACHE: dict[str, Feature] = {}
+_MUTUAL_INFORMATION_CACHE: dict[str, Feature] = {}
 
 
-def pearson_correlation_positive_lags(
-    x: pd.Series,
-    y: pd.Series,
+def mutual_information_positive_lags(
+    target: pd.Series,
+    predictor: pd.Series,
     max_window: int,
     x_transform: Transform,
     y_transform: Transform,
 ) -> Feature:
     """Calculate the best pearson correlation for the 2 series within a lag window"""
-    x = TRANSFORMS[x_transform](x)
-    y = TRANSFORMS[y_transform](y)
-    corrs = []
+    target = TRANSFORMS[x_transform](target).dropna()
+    predictor = TRANSFORMS[y_transform](predictor).dropna()
+
+    mi_vals = []
     lags = range(1, max_window + 1)
 
     for lag in lags:
-        y_shifted = y.shift(lag)
-        valid_idx = x.index.intersection(y_shifted.index)  # type: ignore
-        corr = x.loc[valid_idx].corr(y_shifted.loc[valid_idx])
-        corrs.append(corr)
+        shifted = predictor.shift(lag)
+        aligned = pd.concat([target, shifted], axis=1, join="inner").dropna()
 
-    best_idx = np.argmax(np.abs(corrs))
+        if aligned.shape[0] < 5 or aligned.iloc[:, 1].nunique() < 2:
+            # Too few samples or no variation in predictor → MI is zero
+            mi_vals.append(0.0)
+            continue
+
+        x = aligned.iloc[:, 1].values.reshape(-1, 1)  # type: ignore
+        y = aligned.iloc[:, 0].values  # target
+
+        try:
+            mi = mutual_info_regression(x, y, n_neighbors=3, random_state=42)[0]
+        except ValueError:
+            mi = 0.0
+
+        mi_vals.append(mi)
+
+    best_idx = np.argmax(mi_vals)
     best_lag = lags[best_idx]
-    best_corr = corrs[best_idx]
-    if np.isnan(best_corr):
-        best_corr = 0.0
+    best_mi = mi_vals[best_idx]
 
     return {
-        "predictor": str(y.name),
+        "predictor": str(predictor.name),
         "predictor_transform": y_transform,
-        "predictand": str(x.name),
+        "predictand": str(target.name),
         "predictand_transform": x_transform,
         "lag": float(best_lag),
-        "correlation": float(abs(best_corr)),
-        "notes": "pearson",
+        "correlation": float(abs(best_mi)),
+        "notes": "mutual_information",
     }
 
 
-def pearson_process(
+def mutual_information_process(
     df: pd.DataFrame,
     predictand: str,
     max_window: int,
@@ -63,13 +77,13 @@ def pearson_process(
             key = "_".join(
                 sorted([predictor, transform, predictand, predictand_transform])
             )
-            feature = _PEARSON_CACHE.get(key)
+            feature = _MUTUAL_INFORMATION_CACHE.get(key)
             if feature is not None:
                 yield feature
                 cached_predictors.append(predictor)
     for transform in TRANSFORMS:
         for feature in pool.starmap(
-            pearson_correlation_positive_lags,
+            mutual_information_positive_lags,
             [
                 (df[x], df[predictand], max_window, transform, predictand_transform)
                 for x in df.columns.values.tolist()
@@ -88,5 +102,5 @@ def pearson_process(
                     ]
                 )
             )
-            _PEARSON_CACHE[key] = feature
+            _MUTUAL_INFORMATION_CACHE[key] = feature
             yield feature

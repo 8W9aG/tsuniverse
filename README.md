@@ -12,6 +12,7 @@ Python 3.11.6:
 
 - [pandas](https://pandas.pydata.org/)
 - [pyarrow](https://arrow.apache.org/docs/python/index.html)
+- [scikit-learn](https://scikit-learn.org/)
 
 ## Raison D'être :thought_balloon:
 
@@ -22,6 +23,7 @@ Python 3.11.6:
 `tsuniverse` is a functional library, meaning that each phase of the feature extraction goes through functions without side-effects. It attempts to do as much multiprocessing as it can to make this process quicker. Each feature extraction is done in different phases, those phases are:
 
 1. Pearson Correlations.
+2. Mutual Information.
 
 ## Installation :inbox_tray:
 

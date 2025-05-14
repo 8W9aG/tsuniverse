@@ -12,3 +12,4 @@ class Feature(TypedDict):
     predictand_transform: str
     lag: NotRequired[float]
     correlation: NotRequired[float]
+    notes: NotRequired[str]
