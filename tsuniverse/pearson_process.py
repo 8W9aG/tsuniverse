@@ -4,10 +4,10 @@ from typing import Any, Iterator
 
 import numpy as np
 import pandas as pd
-
-from .feature import Feature
-from .transform import Transform
-from .transforms import TRANSFORMS
+from timeseriesfeatures.feature import FEATURE_TYPE_LAG  # type: ignore
+from timeseriesfeatures.feature import Feature  # type: ignore
+from timeseriesfeatures.transform import Transform  # type: ignore
+from timeseriesfeatures.transforms import TRANSFORMS  # type: ignore
 
 _PEARSON_CACHE: dict[str, Feature] = {}
 
@@ -16,11 +16,11 @@ def pearson_correlation_positive_lags(
     x: pd.Series,
     y: pd.Series,
     max_window: int,
-    x_transform: Transform,
     y_transform: Transform,
+    column: str,
 ) -> Feature:
     """Calculate the best pearson correlation for the 2 series within a lag window"""
-    x = TRANSFORMS[x_transform](x)
+    x = x.dropna()
     y = TRANSFORMS[y_transform](y)
     corrs = []
     lags = range(1, max_window + 1)
@@ -37,15 +37,14 @@ def pearson_correlation_positive_lags(
     if np.isnan(best_corr):
         best_corr = 0.0
 
-    return {
-        "predictor": str(y.name),
-        "predictor_transform": y_transform,
-        "predictand": str(x.name),
-        "predictand_transform": x_transform,
-        "lag": float(best_lag),
-        "correlation": float(abs(best_corr)),
-        "notes": "pearson",
-    }
+    return Feature(
+        feature_type=FEATURE_TYPE_LAG,
+        columns=[column],
+        value1=int(best_lag),
+        transform=str(y_transform),
+        rank_value=best_corr,
+        rank_type="pearson",
+    )
 
 
 def pearson_process(
@@ -53,16 +52,13 @@ def pearson_process(
     predictand: str,
     max_window: int,
     pool: Any,
-    predictand_transform: str,
 ) -> Iterator[Feature]:
     """Process the dataframe for tsuniverse features."""
     predictors = df.columns.values.tolist()
     cached_predictors = []
     for predictor in predictors:
         for transform in TRANSFORMS:
-            key = "_".join(
-                sorted([predictor, transform, predictand, predictand_transform])
-            )
+            key = "_".join(sorted([predictor, transform, predictand]))
             feature = _PEARSON_CACHE.get(key)
             if feature is not None:
                 yield feature
@@ -71,7 +67,7 @@ def pearson_process(
         for feature in pool.starmap(
             pearson_correlation_positive_lags,
             [
-                (df[x], df[predictand], max_window, transform, predictand_transform)
+                (df[x], df[predictand], max_window, transform, x)
                 for x in df.columns.values.tolist()
                 if x != predictand and x not in cached_predictors
             ],
@@ -81,10 +77,9 @@ def pearson_process(
             key = "_".join(
                 sorted(
                     [
-                        feature["predictor"],
+                        feature["columns"][0],
                         transform,
-                        feature["predictand"],
-                        predictand_transform,
+                        predictand,
                     ]
                 )
             )

@@ -4,11 +4,10 @@ from multiprocessing import Pool
 from typing import Iterator
 
 import pandas as pd
+from timeseriesfeatures.feature import Feature  # type: ignore
 
-from .feature import Feature
 from .mutual_information_process import mutual_information_process
 from .pearson_process import pearson_process
-from .transforms import TRANSFORMS
 
 
 def process(
@@ -20,15 +19,11 @@ def process(
     """Process the dataframe for tsuniverse features."""
     with Pool() as p:
         for predictand in predictands:
-            for transform_name in TRANSFORMS:
-                for sub_process in [pearson_process, mutual_information_process]:
-                    features = sorted(
-                        list(
-                            sub_process(df, predictand, max_window, p, transform_name)
-                        ),
-                        key=lambda x: abs(
-                            x["correlation"] if "correlation" in x else 0.0
-                        ),
-                        reverse=True,
-                    )[:max_process_features]
-                    yield features
+            for sub_process in [pearson_process, mutual_information_process]:
+                features = list(sub_process(df, predictand, max_window, p))
+                features = sorted(
+                    features,
+                    key=lambda x: abs(x["rank_value"] if "rank_value" in x else 0.0),
+                    reverse=True,
+                )[:max_process_features]
+                yield features

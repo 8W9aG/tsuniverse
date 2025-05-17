@@ -13,6 +13,7 @@ Python 3.11.6:
 - [pandas](https://pandas.pydata.org/)
 - [pyarrow](https://arrow.apache.org/docs/python/index.html)
 - [scikit-learn](https://scikit-learn.org/)
+- [timeseries-features](https://github.com/8W9aG/timeseries-features)
 
 ## Raison D'être :thought_balloon:
 

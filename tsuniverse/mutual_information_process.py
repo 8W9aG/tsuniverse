@@ -6,10 +6,10 @@ from typing import Any, Iterator
 import numpy as np
 import pandas as pd
 from sklearn.feature_selection import mutual_info_regression  # type: ignore
-
-from .feature import Feature
-from .transform import Transform
-from .transforms import TRANSFORMS
+from timeseriesfeatures.feature import FEATURE_TYPE_LAG  # type: ignore
+from timeseriesfeatures.feature import Feature  # type: ignore
+from timeseriesfeatures.transform import Transform  # type: ignore
+from timeseriesfeatures.transforms import TRANSFORMS  # type: ignore
 
 _MUTUAL_INFORMATION_CACHE: dict[str, Feature] = {}
 
@@ -18,11 +18,11 @@ def mutual_information_positive_lags(
     target: pd.Series,
     predictor: pd.Series,
     max_window: int,
-    x_transform: Transform,
     y_transform: Transform,
+    column: str,
 ) -> Feature:
     """Calculate the best pearson correlation for the 2 series within a lag window"""
-    target = TRANSFORMS[x_transform](target).dropna()
+    target = target.dropna()
     predictor = TRANSFORMS[y_transform](predictor).dropna()
 
     mi_vals = []
@@ -51,15 +51,14 @@ def mutual_information_positive_lags(
     best_lag = lags[best_idx]
     best_mi = mi_vals[best_idx]
 
-    return {
-        "predictor": str(predictor.name),
-        "predictor_transform": y_transform,
-        "predictand": str(target.name),
-        "predictand_transform": x_transform,
-        "lag": float(best_lag),
-        "correlation": float(abs(best_mi)),
-        "notes": "mutual_information",
-    }
+    return Feature(
+        feature_type=FEATURE_TYPE_LAG,
+        columns=[column],
+        value1=int(best_lag),
+        transform=str(y_transform),
+        rank_value=best_mi,
+        rank_type="mutual_information",
+    )
 
 
 def mutual_information_process(
@@ -67,16 +66,13 @@ def mutual_information_process(
     predictand: str,
     max_window: int,
     pool: Any,
-    predictand_transform: str,
 ) -> Iterator[Feature]:
     """Process the dataframe for tsuniverse features."""
     predictors = df.columns.values.tolist()
     cached_predictors = []
     for predictor in predictors:
         for transform in TRANSFORMS:
-            key = "_".join(
-                sorted([predictor, transform, predictand, predictand_transform])
-            )
+            key = "_".join(sorted([predictor, transform, predictand]))
             feature = _MUTUAL_INFORMATION_CACHE.get(key)
             if feature is not None:
                 yield feature
@@ -85,7 +81,7 @@ def mutual_information_process(
         for feature in pool.starmap(
             mutual_information_positive_lags,
             [
-                (df[x], df[predictand], max_window, transform, predictand_transform)
+                (df[x], df[predictand], max_window, transform, x)
                 for x in df.columns.values.tolist()
                 if x != predictand and x not in cached_predictors
             ],
@@ -95,10 +91,9 @@ def mutual_information_process(
             key = "_".join(
                 sorted(
                     [
-                        feature["predictor"],
+                        feature["columns"][0],
                         transform,
-                        feature["predictand"],
-                        predictand_transform,
+                        predictand,
                     ]
                 )
             )
