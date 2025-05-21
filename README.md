@@ -14,6 +14,7 @@ Python 3.11.6:
 - [pyarrow](https://arrow.apache.org/docs/python/index.html)
 - [scikit-learn](https://scikit-learn.org/)
 - [timeseries-features](https://github.com/8W9aG/timeseries-features)
+- [scipy](https://scipy.org/)
 
 ## Raison D'être :thought_balloon:
 

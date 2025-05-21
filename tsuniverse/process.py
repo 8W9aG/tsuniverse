@@ -8,6 +8,7 @@ from timeseriesfeatures.feature import Feature  # type: ignore
 
 from .mutual_information_process import mutual_information_process
 from .pearson_process import pearson_process
+from .spearman_process import spearman_process
 
 
 def process(
@@ -19,7 +20,11 @@ def process(
     """Process the dataframe for tsuniverse features."""
     with Pool() as p:
         for predictand in predictands:
-            for sub_process in [pearson_process, mutual_information_process]:
+            for sub_process in [
+                pearson_process,
+                mutual_information_process,
+                spearman_process,
+            ]:
                 features = list(sub_process(df, predictand, max_window, p))
                 features = sorted(
                     features,
