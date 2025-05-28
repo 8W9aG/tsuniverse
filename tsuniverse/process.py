@@ -4,6 +4,7 @@ from multiprocessing import Pool
 from typing import Iterator
 
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler  # type: ignore
 from timeseriesfeatures.feature import Feature  # type: ignore
 
 from .mutual_information_process import mutual_information_process
@@ -18,6 +19,9 @@ def process(
     max_process_features: int = 10,
 ) -> Iterator[list[Feature]]:
     """Process the dataframe for tsuniverse features."""
+    for column in df.columns:
+        scaler = MinMaxScaler()
+        df[column] = scaler.fit_transform(df[[column]])
     with Pool() as p:
         for predictand in predictands:
             for sub_process in [

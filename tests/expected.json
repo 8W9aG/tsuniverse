@@ -1,1 +1,338 @@
-[[{"feature_type": "lag", "columns": ["ECBDFR"], "value1": 1, "transform": "none", "rank_value": 0.9997965970536951, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["IUDSOIA"], "value1": 30, "transform": "none", "rank_value": 0.9881582632769973, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["SOFR90DAYAVG"], "value1": 1, "transform": "none", "rank_value": 0.9736282969011434, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["SOFR30DAYAVG"], "value1": 29, "transform": "none", "rank_value": 0.9724973403824313, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["DFEDTARU"], "value1": 30, "transform": "none", "rank_value": 0.9712871064819312, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["EFFR"], "value1": 30, "transform": "none", "rank_value": 0.9712287322705263, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["SOFR"], "value1": 30, "transform": "none", "rank_value": 0.9697827946472117, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["AMERIBOR"], "value1": 30, "transform": "none", "rank_value": 0.9697447764212204, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["DTP10J28"], "value1": 30, "transform": "none", "rank_value": 0.9168429481312181, "rank_type": "pearson"}, {"feature_type": "lag", "columns": ["ECIWAG"], "value1": 30, "transform": "none", "rank_value": 0.9008366607216682, "rank_type": "pearson"}], [{"feature_type": "lag", "columns": ["ADPWNUSNERSA"], "value1": 23, "transform": "none", "rank_value": 3.4042062311465613, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["IUDSOIA"], "value1": 7, "transform": "none", "rank_value": 2.8784644544675, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["BBKMGDP"], "value1": 1, "transform": "none", "rank_value": 2.8516003673390453, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["SOFR90DAYAVG"], "value1": 7, "transform": "none", "rank_value": 2.687407418035727, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["SOFR30DAYAVG"], "value1": 14, "transform": "none", "rank_value": 2.6637263228608985, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["AMERIBOR"], "value1": 7, "transform": "none", "rank_value": 2.6395947091976417, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["GDP"], "value1": 10, "transform": "none", "rank_value": 2.4173075348108517, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["ECIWAG"], "value1": 10, "transform": "none", "rank_value": 2.4161028280848393, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["SOFR"], "value1": 1, "transform": "none", "rank_value": 2.292343715625869, "rank_type": "mutual_information"}, {"feature_type": "lag", "columns": ["EFFR"], "value1": 1, "transform": "none", "rank_value": 2.122596981649818, "rank_type": "mutual_information"}], [{"feature_type": "lag", "columns": ["ECBDFR"], "value1": 1, "transform": "none", "rank_value": 0.9319844262304191, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["SOFR90DAYAVG"], "value1": 30, "transform": "none", "rank_value": 0.9304628040122969, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["DFEDTARU"], "value1": 30, "transform": "none", "rank_value": 0.9183361289084216, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["SOFR30DAYAVG"], "value1": 30, "transform": "none", "rank_value": 0.9142524937101391, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["DTP10J28"], "value1": 30, "transform": "none", "rank_value": 0.9052884157872059, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["SOFR"], "value1": 30, "transform": "none", "rank_value": 0.9032144356186341, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["EFFR"], "value1": 30, "transform": "none", "rank_value": 0.8984625411644546, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["IUDSOIA"], "value1": 30, "transform": "none", "rank_value": 0.8955694579865261, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["AMERIBOR"], "value1": 30, "transform": "none", "rank_value": 0.8941589324220103, "rank_type": "spearman"}, {"feature_type": "lag", "columns": ["SOFRVOL"], "value1": 7, "transform": "none", "rank_value": 0.8449325075101636, "rank_type": "spearman"}]]
+[
+    [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 0.9997965970536944,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9881582632769973,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 0.9736282969011432,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 29,
+            "transform": "none",
+            "rank_value": 0.9724973403824315,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DFEDTARU"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9712871064819315,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "EFFR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9712287322705264,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9697827946472116,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "AMERIBOR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9697447764212207,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DTP10J28"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.916842948131218,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECIWAG"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9008366607216685,
+            "rank_type": "pearson"
+        }
+    ],
+    [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ADPWNUSNERSA"
+            ],
+            "value1": 23,
+            "transform": "none",
+            "rank_value": 3.4060096627331364,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 7,
+            "transform": "none",
+            "rank_value": 2.878222461298216,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "BBKMGDP"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 2.86152120573971,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 7,
+            "transform": "none",
+            "rank_value": 2.6873615866068987,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 14,
+            "transform": "none",
+            "rank_value": 2.663936507405246,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "AMERIBOR"
+            ],
+            "value1": 7,
+            "transform": "none",
+            "rank_value": 2.6395947091976417,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECIWAG"
+            ],
+            "value1": 10,
+            "transform": "none",
+            "rank_value": 2.4184222369183894,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "GDP"
+            ],
+            "value1": 10,
+            "transform": "none",
+            "rank_value": 2.4174891331552586,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 2.293049553556975,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "EFFR"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 2.122499251203789,
+            "rank_type": "mutual_information"
+        }
+    ],
+    [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 0.9319844262304191,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9304628040122969,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DFEDTARU"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9183361289084216,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9142524937101391,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DTP10J28"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9052884157872059,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.9032144356186341,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "EFFR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.8984625411644546,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.8955694579865261,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "AMERIBOR"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.8941589324220103,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFRVOL"
+            ],
+            "value1": 7,
+            "transform": "none",
+            "rank_value": 0.8449325075101636,
+            "rank_type": "spearman"
+        }
+    ]
+]
