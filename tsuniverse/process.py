@@ -20,9 +20,10 @@ def process(
     max_process_features: int = 10,
 ) -> Iterator[list[Feature]]:
     """Process the dataframe for tsuniverse features."""
+    new_df = df.copy()
     for column in df.columns:
         scaler = MinMaxScaler()
-        df[column] = scaler.fit_transform(df[[column]])
+        new_df[column] = scaler.fit_transform(new_df[[column]])
     with Pool() as p:
         for predictand in predictands:
             for sub_process in [
@@ -31,7 +32,7 @@ def process(
                 spearman_process,
                 kendall_process,
             ]:
-                features = list(sub_process(df, predictand, max_window, p))
+                features = list(sub_process(new_df, predictand, max_window, p))
                 features = sorted(
                     features,
                     key=lambda x: abs(x["rank_value"] if "rank_value" in x else 0.0),

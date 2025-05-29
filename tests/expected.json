@@ -18,8 +18,30 @@
                 "ECBDFR"
             ],
             "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.9995927253527465,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
             "transform": "log",
             "rank_value": 0.9979843441648623,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 30,
+            "transform": "sma_5",
+            "rank_value": 0.98834195472331,
             "rank_type": "pearson"
         },
         {
@@ -59,59 +81,48 @@
             "feature_type": "lag",
             "columns":
             [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.9735348600069621,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 27,
+            "transform": "sma_5",
+            "rank_value": 0.9725051485808331,
+            "rank_type": "pearson"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
                 "SOFR30DAYAVG"
             ],
             "value1": 29,
             "transform": "none",
             "rank_value": 0.9724973403824315,
             "rank_type": "pearson"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "DFEDTARU"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9712871064819315,
-            "rank_type": "pearson"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "EFFR"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9712287322705264,
-            "rank_type": "pearson"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "SOFR"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9697827946472116,
-            "rank_type": "pearson"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "AMERIBOR"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9697447764212207,
-            "rank_type": "pearson"
         }
     ],
     [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ADPWNUSNERSA"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 3.6742385216565268,
+            "rank_type": "mutual_information"
+        },
         {
             "feature_type": "lag",
             "columns":
@@ -132,6 +143,17 @@
             "value1": 2,
             "transform": "log",
             "rank_value": 3.4007055153548578,
+            "rank_type": "mutual_information"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "BBKMGDP"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 3.012660181532567,
             "rank_type": "mutual_information"
         },
         {
@@ -182,11 +204,11 @@
             "feature_type": "lag",
             "columns":
             [
-                "SOFR90DAYAVG"
+                "IUDSOIA"
             ],
-            "value1": 7,
-            "transform": "log",
-            "rank_value": 2.7017277537399402,
+            "value1": 5,
+            "transform": "sma_5",
+            "rank_value": 2.8482856221515083,
             "rank_type": "mutual_information"
         },
         {
@@ -195,31 +217,9 @@
             [
                 "SOFR90DAYAVG"
             ],
-            "value1": 7,
-            "transform": "none",
-            "rank_value": 2.6873615866068987,
-            "rank_type": "mutual_information"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "SOFR30DAYAVG"
-            ],
-            "value1": 14,
-            "transform": "log",
-            "rank_value": 2.6692452452299693,
-            "rank_type": "mutual_information"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "SOFR30DAYAVG"
-            ],
-            "value1": 14,
-            "transform": "none",
-            "rank_value": 2.663936507405246,
+            "value1": 4,
+            "transform": "sma_5",
+            "rank_value": 2.8032312406436053,
             "rank_type": "mutual_information"
         }
     ],
@@ -250,6 +250,28 @@
             "feature_type": "lag",
             "columns":
             [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.9319048859574806,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "sma_5",
+            "rank_value": 0.930951580964824,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
                 "SOFR90DAYAVG"
             ],
             "value1": 30,
@@ -266,6 +288,17 @@
             "value1": 30,
             "transform": "log",
             "rank_value": 0.9304628040122969,
+            "rank_type": "spearman"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DFEDTARU"
+            ],
+            "value1": 30,
+            "transform": "sma_5",
+            "rank_value": 0.9199629041525532,
             "rank_type": "spearman"
         },
         {
@@ -297,41 +330,8 @@
                 "SOFR30DAYAVG"
             ],
             "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9142524937101391,
-            "rank_type": "spearman"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "SOFR30DAYAVG"
-            ],
-            "value1": 30,
-            "transform": "log",
-            "rank_value": 0.9142524937101391,
-            "rank_type": "spearman"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "DTP10J28"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.9052884157872059,
-            "rank_type": "spearman"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "DTP10J28"
-            ],
-            "value1": 30,
-            "transform": "log",
-            "rank_value": 0.9052884157872059,
+            "transform": "sma_5",
+            "rank_value": 0.9153291118154009,
             "rank_type": "spearman"
         }
     ],
@@ -356,6 +356,28 @@
             "value1": 1,
             "transform": "log",
             "rank_value": 0.847540716046284,
+            "rank_type": "kendall"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.8466354501535593,
+            "rank_type": "kendall"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DFEDTARU"
+            ],
+            "value1": 30,
+            "transform": "sma_5",
+            "rank_value": 0.800231743594402,
             "rank_type": "kendall"
         },
         {
@@ -406,11 +428,11 @@
             "feature_type": "lag",
             "columns":
             [
-                "SOFR30DAYAVG"
+                "SOFR90DAYAVG"
             ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.7581752553325039,
+            "value1": 15,
+            "transform": "sma_5",
+            "rank_value": 0.7721467028218876,
             "rank_type": "kendall"
         },
         {
@@ -420,30 +442,8 @@
                 "SOFR30DAYAVG"
             ],
             "value1": 30,
-            "transform": "log",
-            "rank_value": 0.7581752553325039,
-            "rank_type": "kendall"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "EFFR"
-            ],
-            "value1": 30,
-            "transform": "none",
-            "rank_value": 0.7541503123921341,
-            "rank_type": "kendall"
-        },
-        {
-            "feature_type": "lag",
-            "columns":
-            [
-                "EFFR"
-            ],
-            "value1": 30,
-            "transform": "log",
-            "rank_value": 0.7541503123921341,
+            "transform": "sma_5",
+            "rank_value": 0.7586906824847334,
             "rank_type": "kendall"
         }
     ]
