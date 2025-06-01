@@ -17,6 +17,7 @@ Python 3.11.6:
 - [scipy](https://scipy.org/)
 - [dcor](https://dcor.readthedocs.io/en/latest/index.html)
 - [numpy](https://numpy.org/)
+- [pyHSICLasso](https://github.com/riken-aip/pyHSICLasso)
 
 ## Raison D'être :thought_balloon:
 
@@ -31,6 +32,7 @@ Python 3.11.6:
 3. Spearmans Rho.
 4. Kendalls Tau.
 5. Distance Correlations.
+6. HSIC.
 
 ## Installation :inbox_tray:
 

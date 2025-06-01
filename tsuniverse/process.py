@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler  # type: ignore
 from timeseriesfeatures.feature import Feature  # type: ignore
 
 from .distance_correlation_process import distance_correlation_process
+from .hsic_process import hsic_process
 from .kendall_process import kendall_process
 from .mutual_information_process import mutual_information_process
 from .pearson_process import pearson_process
@@ -33,6 +34,7 @@ def process(
                 spearman_process,
                 kendall_process,
                 distance_correlation_process,
+                hsic_process,
             ]:
                 features = list(sub_process(new_df, predictand, max_window, p))
                 features = sorted(

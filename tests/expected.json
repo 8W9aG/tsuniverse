@@ -558,5 +558,117 @@
             "rank_value": 0.9748653796347789,
             "rank_type": "distance_correlation"
         }
+    ],
+    [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "velocity",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "log",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "acceleration",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "jerk",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "snap",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 30,
+            "transform": "sma_5",
+            "rank_value": 0.5239633917808533,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DTP10J28"
+            ],
+            "value1": 30,
+            "transform": "none",
+            "rank_value": 0.5180303454399109,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DTP10J28"
+            ],
+            "value1": 30,
+            "transform": "velocity",
+            "rank_value": 0.5180303454399109,
+            "rank_type": "hsic"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "DTP10J28"
+            ],
+            "value1": 30,
+            "transform": "log",
+            "rank_value": 0.5180303454399109,
+            "rank_type": "hsic"
+        }
     ]
 ]
