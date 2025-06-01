@@ -446,5 +446,117 @@
             "rank_value": 0.7586906824847334,
             "rank_type": "kendall"
         }
+    ],
+    [
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 0.9997739182645882,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.9995424307755869,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "ECBDFR"
+            ],
+            "value1": 1,
+            "transform": "log",
+            "rank_value": 0.998354948407698,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 2,
+            "transform": "sma_5",
+            "rank_value": 0.9899151099177346,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 6,
+            "transform": "none",
+            "rank_value": 0.9897935878620046,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "IUDSOIA"
+            ],
+            "value1": 30,
+            "transform": "log",
+            "rank_value": 0.9869719435889671,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 1,
+            "transform": "none",
+            "rank_value": 0.9759507139184013,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR90DAYAVG"
+            ],
+            "value1": 1,
+            "transform": "sma_5",
+            "rank_value": 0.9757537078413394,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 22,
+            "transform": "sma_5",
+            "rank_value": 0.9748815941735383,
+            "rank_type": "distance_correlation"
+        },
+        {
+            "feature_type": "lag",
+            "columns":
+            [
+                "SOFR30DAYAVG"
+            ],
+            "value1": 23,
+            "transform": "none",
+            "rank_value": 0.9748653796347789,
+            "rank_type": "distance_correlation"
+        }
     ]
 ]

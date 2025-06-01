@@ -15,6 +15,8 @@ Python 3.11.6:
 - [scikit-learn](https://scikit-learn.org/)
 - [timeseries-features](https://github.com/8W9aG/timeseries-features)
 - [scipy](https://scipy.org/)
+- [dcor](https://dcor.readthedocs.io/en/latest/index.html)
+- [numpy](https://numpy.org/)
 
 ## Raison D'être :thought_balloon:
 
@@ -26,6 +28,9 @@ Python 3.11.6:
 
 1. Pearson Correlations.
 2. Mutual Information.
+3. Spearmans Rho.
+4. Kendalls Tau.
+5. Distance Correlations.
 
 ## Installation :inbox_tray:
 
