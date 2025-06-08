@@ -71,6 +71,8 @@ def spearman_process(
                 yield feature
                 cached_predictors.append(predictor)
     for transform in TRANSFORMS:
+        if transform == Transform.LOG:
+            continue
         for feature in pool.starmap(
             spearman_correlation_positive_lags,
             [

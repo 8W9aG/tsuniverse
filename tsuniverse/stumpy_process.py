@@ -1,80 +1,86 @@
-"""The spearman process function."""
+"""The stumpy process function."""
 
-# pylint: disable=duplicate-code
+# pylint: disable=duplicate-code,invalid-name
 from typing import Any, Iterator
 
 import numpy as np
 import pandas as pd
-from scipy.stats import kendalltau  # type: ignore
+import stumpy  # type: ignore
 from timeseriesfeatures.feature import FEATURE_TYPE_LAG  # type: ignore
 from timeseriesfeatures.feature import Feature  # type: ignore
 from timeseriesfeatures.transform import Transform  # type: ignore
 from timeseriesfeatures.transforms import TRANSFORMS  # type: ignore
 
-_KENDALL_CACHE: dict[str, Feature] = {}
+_STUMPY_CACHE: dict[str, Feature] = {}
 
 
-def kendall_correlation_positive_lags(
+def stumpy_similarity_positive_lags(
     predictor: pd.Series,
     predictand: pd.Series,
     max_window: int,
     predictor_transform: Transform,
     column: str,
-) -> Feature:
-    """Calculate the best kendall correlation for the 2 series within a lag window"""
+) -> Feature | None:
+    """Use STUMP to find the most similar subsequence via matrix profile."""
+    predictor = TRANSFORMS[predictor_transform](predictor).dropna()
     predictand = predictand.dropna()
-    predictor = TRANSFORMS[predictor_transform](predictor)
-    corrs = []
-    lags = range(1, max_window + 1)
 
-    for lag in lags:
-        shifted = predictor.shift(lag)
-        aligned = pd.concat([predictand, shifted], axis=1).dropna()
+    # Convert to numpy
+    A = predictand.values.astype(np.float64)
+    B = predictor.values.astype(np.float64)
 
-        if aligned.shape[0] < 5 or aligned.iloc[:, 1].nunique() < 2:
-            corrs.append(0.0)
-            continue
+    # Use the smallest viable window if too short
+    m = min(max_window, len(A), len(B)) - 1
+    if m < 4:
+        return None
 
-        corr, _ = kendalltau(aligned.iloc[:, 0], aligned.iloc[:, 1])
-        corrs.append(corr)
+    profile = stumpy.stump(A, m, B)
 
-    best_idx = np.argmax(np.abs(corrs))
-    best_lag = lags[best_idx]
-    best_corr = corrs[best_idx]
-    if np.isnan(best_corr):
-        best_corr = 0.0
+    min_idx = np.argmin(profile[:, 0])
+    best_dist = profile[min_idx, 0]
+    match_idx = profile[min_idx, 1]
+
+    # Estimate lag (in this case: where does the best match in B align with A?)
+    lag = abs(min_idx - profile[min_idx, 1]) if not np.isnan(profile[min_idx, 1]) else 0
+
+    if np.isnan(best_dist) or np.isinf(best_dist):
+        return None
+    
+    lag = min_idx - int(match_idx)
+    if lag <= 0:
+        lag = 1
 
     return Feature(
         feature_type=FEATURE_TYPE_LAG,
         columns=[column],
-        value1=int(best_lag),
+        value1=int(lag),
         transform=str(predictor_transform),
-        rank_value=best_corr,
-        rank_type="kendall",
+        rank_value=-best_dist,  # negative so that higher rank is better
+        rank_type="stumpy",
     )
 
 
-def kendall_process(
+def stumpy_process(
     df: pd.DataFrame,
     predictand: str,
     max_window: int,
     pool: Any,
 ) -> Iterator[Feature]:
-    """Process the dataframe for kendall features."""
+    """Process the dataframe for tsuniverse features using STUMP similarity."""
     predictors = df.columns.values.tolist()
     cached_predictors = []
+
     for predictor in predictors:
         for transform in TRANSFORMS:
             key = "_".join(sorted([predictor, transform, predictand]))
-            feature = _KENDALL_CACHE.get(key)
+            feature = _STUMPY_CACHE.get(key)
             if feature is not None:
                 yield feature
                 cached_predictors.append(predictor)
+
     for transform in TRANSFORMS:
-        if transform == Transform.LOG:
-            continue
         for feature in pool.starmap(
-            kendall_correlation_positive_lags,
+            stumpy_similarity_positive_lags,
             [
                 (df[x], df[predictand], max_window, transform, x)
                 for x in df.columns.values.tolist()
@@ -92,5 +98,5 @@ def kendall_process(
                     ]
                 )
             )
-            _KENDALL_CACHE[key] = feature
+            _STUMPY_CACHE[key] = feature
             yield feature

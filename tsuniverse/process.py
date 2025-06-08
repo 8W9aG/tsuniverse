@@ -13,6 +13,7 @@ from .kendall_process import kendall_process
 from .mutual_information_process import mutual_information_process
 from .pearson_process import pearson_process
 from .spearman_process import spearman_process
+from .stumpy_process import stumpy_process
 
 
 def process(
@@ -35,6 +36,7 @@ def process(
                 kendall_process,
                 distance_correlation_process,
                 hsic_process,
+                stumpy_process,
             ]:
                 features = list(sub_process(new_df, predictand, max_window, p))
                 features = sorted(

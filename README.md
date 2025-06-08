@@ -18,6 +18,7 @@ Python 3.11.6:
 - [dcor](https://dcor.readthedocs.io/en/latest/index.html)
 - [numpy](https://numpy.org/)
 - [pyHSICLasso](https://github.com/riken-aip/pyHSICLasso)
+- [stumpy](https://stumpy.readthedocs.io/en/latest/)
 
 ## Raison D'être :thought_balloon:
 
@@ -33,6 +34,7 @@ Python 3.11.6:
 4. Kendalls Tau.
 5. Distance Correlations.
 6. HSIC.
+7. Stumpy.
 
 ## Installation :inbox_tray:
 

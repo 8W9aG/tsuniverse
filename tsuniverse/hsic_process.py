@@ -98,6 +98,16 @@ def hsic_process(
                 yield feature
                 cached_predictors.append(predictor)
     for transform in TRANSFORMS:
+        if transform in {
+            Transform.ACCELERATION,
+            Transform.LOG,
+            Transform.VELOCITY,
+            Transform.JERK,
+            Transform.SNAP,
+            Transform.CRACKLE,
+            Transform.SMA_5,
+        }:
+            continue
         for feature in pool.starmap(
             hsic_positive_lags,
             [
